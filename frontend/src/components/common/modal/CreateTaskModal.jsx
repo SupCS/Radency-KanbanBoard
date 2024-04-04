@@ -1,5 +1,4 @@
 import React from "react";
-import "./CreateTaskModal.css";
 
 const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) {
@@ -7,10 +6,19 @@ const Modal = ({ isOpen, onClose, children }) => {
     }
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+            onClick={onClose}
+        >
+            <div
+                className="bg-white p-5 rounded-md relative max-w-md w-full"
+                onClick={(e) => e.stopPropagation()}
+            >
                 {children}
-                <button className="close-modal" onClick={onClose}>
+                <button
+                    className="absolute top-2.5 right-2.5 text-lg border-none bg-none cursor-pointer"
+                    onClick={onClose}
+                >
                     ✕
                 </button>
             </div>

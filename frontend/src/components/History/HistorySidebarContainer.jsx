@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHistory, clearHistory } from "../../redux/historySlice";
 import HistorySidebar from "./HistorySidebar";
 
 const HistorySidebarContainer = ({ isOpen, onClose, currentBoardId }) => {
     const dispatch = useDispatch();
+    const sidebarRef = useRef();
     const { logs, status } = useSelector((state) => state.history);
 
     useEffect(() => {
@@ -19,7 +20,11 @@ const HistorySidebarContainer = ({ isOpen, onClose, currentBoardId }) => {
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
-            if (isOpen && !event.target.closest(".history-sidebar")) {
+            if (
+                isOpen &&
+                sidebarRef.current &&
+                !sidebarRef.current.contains(event.target)
+            ) {
                 onClose();
             }
         };
@@ -32,6 +37,7 @@ const HistorySidebarContainer = ({ isOpen, onClose, currentBoardId }) => {
 
     return (
         <HistorySidebar
+            ref={sidebarRef}
             isOpen={isOpen}
             onClose={onClose}
             logs={logs}

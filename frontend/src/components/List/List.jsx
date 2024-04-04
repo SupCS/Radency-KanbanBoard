@@ -1,5 +1,4 @@
 import React from "react";
-import "./List.css";
 import TaskForm from "../common/taskform/TaskForm.jsx";
 import TaskContainer from "../Task/TaskContainer.jsx";
 import Button from "../common/Button/Button.jsx";
@@ -29,8 +28,8 @@ const List = ({
     onDeleteTask,
 }) => {
     return (
-        <div className="column">
-            <div className="column-header-container">
+        <div className="border border-gray-300 rounded-lg p-4 m-4 w-72 bg-gray-100 flex flex-col min-w-72">
+            <div className="flex justify-between mb-4">
                 {isEditing ? (
                     <input
                         type="text"
@@ -59,7 +58,7 @@ const List = ({
             <Modal isOpen={isModalOpen} onClose={onCloseModal}>
                 <TaskForm onSave={onSaveTask} />
             </Modal>
-            <div className="tasks-list">
+            <div className="tasks-list flex flex-col items-center gap-4 mt-5">
                 {tasks.map((task) => (
                     <TaskContainer
                         key={task.id}

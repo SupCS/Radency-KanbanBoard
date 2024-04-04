@@ -1,17 +1,5 @@
-.columns-wrapper {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-    gap: 16px;
-}
-
 .columns-wrapper::-webkit-scrollbar {
     display: none;
-}
-
-.app-buttons-container {
-    display: flex;
-    justify-content: space-between;
 }
 
 .columns-wrapper > :first-child {
@@ -20,10 +8,6 @@
   
 .columns-wrapper > :last-child {
     margin-right: 20px;
-}
-
-.app-buttons-container {
-    margin: 20px 20px 0 20px;
 }
 
 .columns-wrapper .column:last-child .kebab-menu-container .popup-menu {

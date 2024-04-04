@@ -26,7 +26,7 @@ const TaskContainer = ({
     }
 
     const truncatedTaskName = truncateText(taskName, 40);
-    const truncatedTaskDescription = truncateText(taskDescription, 100);
+    const truncatedTaskDescription = truncateText(taskDescription, 96);
 
     return (
         <Task

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./ScrollButtons.css";
 
 const ScrollButtons = ({ scrollContainerSelector, itemCount }) => {
     const [showLeftButton, setShowLeftButton] = useState(false);
@@ -18,10 +17,9 @@ const ScrollButtons = ({ scrollContainerSelector, itemCount }) => {
         // Перевіряємо при маунті
         checkScrollButtons();
 
-        // Встановлюємо обробник подій для перевірки при скролінгу
         container.addEventListener("scroll", checkScrollButtons);
 
-        // Перевіряємо кожного разу, коли змінюється кількість елементів
+        // Перевіряєм кожного разу, коли змінюється кількість елементів
         checkScrollButtons();
 
         return () =>
@@ -30,7 +28,7 @@ const ScrollButtons = ({ scrollContainerSelector, itemCount }) => {
 
     const scroll = (direction) => {
         const container = document.querySelector(scrollContainerSelector);
-        const scrollAmount = window.innerWidth * 0.7; // 70% screen width scroll
+        const scrollAmount = window.innerWidth * 0.7; // Прокрутка на 70% екрану
         if (container) {
             container.scrollBy({
                 left: direction === "left" ? -scrollAmount : scrollAmount,
@@ -43,7 +41,7 @@ const ScrollButtons = ({ scrollContainerSelector, itemCount }) => {
         <>
             {showLeftButton && (
                 <button
-                    className="scroll-button left"
+                    className="fixed top-1/2 -translate-y-1/2 z-10 cursor-pointer text-3xl bg-gray-400 border-none rounded-full w-10 h-10 flex items-center justify-center opacity-60 transition-opacity duration-300 hover:opacity-100 left-2.5"
                     onClick={() => scroll("left")}
                 >
                     {"<"}
@@ -51,7 +49,7 @@ const ScrollButtons = ({ scrollContainerSelector, itemCount }) => {
             )}
             {showRightButton && (
                 <button
-                    className="scroll-button right"
+                    className="fixed top-1/2 -translate-y-1/2 z-10 cursor-pointer text-3xl bg-gray-400 border-none rounded-full w-10 h-10 flex items-center justify-center opacity-60 transition-opacity duration-300 hover:opacity-100 right-2.5"
                     onClick={() => scroll("right")}
                 >
                     {">"}
