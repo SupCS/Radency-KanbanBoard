@@ -17,6 +17,7 @@ services:
     ports:
       - "3001:3001"
     environment:
+      DATABASE_URL: postgresql://postgres:papakanban@db:5432/kanban
       DB_HOST: db
       DB_PORT: 5432
       DB_USERNAME: postgres
@@ -40,6 +41,15 @@ services:
     environment:
       REACT_APP_BACKEND_URL: http://localhost:3001
     command: npm start
+
+  storybook:
+    build: ./frontend
+    ports:
+      - "6006:6006"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run storybook
 
 volumes:
   db-data:

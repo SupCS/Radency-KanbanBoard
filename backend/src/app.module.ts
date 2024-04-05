@@ -7,6 +7,13 @@ import { TasksModule } from './tasks/tasks.module';
 import { ActivityLogModule } from './activity-log/activity-log.module';
 import { BoardModule } from './board/board.module';
 
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('DB_PORT:', process.env.DB_PORT);
+console.log('DB_USERNAME:', process.env.DB_USERNAME);
+console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+console.log('DB_NAME:', process.env.DB_NAME);
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -19,9 +26,6 @@ import { BoardModule } from './board/board.module';
       database: process.env.DB_NAME || 'kanban',
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
-      extra: {
-        ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : null,
-      },
     }),
     TaskListModule,
     TasksModule,

@@ -2,6 +2,9 @@ import React from "react";
 import "./TaskDetailsModal.css";
 import Button from "../Button/Button";
 import editIcon from "../../../assets/icons/editIcon.svg";
+import Input from "../Inputs/Input";
+import Textarea from "../Inputs/Textarea";
+import Select from "../Inputs/Select";
 
 const TaskDetailsModal = ({
     isOpen,
@@ -30,13 +33,12 @@ const TaskDetailsModal = ({
                         <div className="flex gap-5 items-center">
                             {isEditing ? (
                                 <>
-                                    <input
+                                    <Input
                                         type="text"
                                         name="taskName"
                                         value={editedTask.taskName}
                                         onChange={onChange}
                                         autoFocus
-                                        className="input border border-gray-300 p-2 rounded-md w-full"
                                     />
                                     <Button onClick={onSave}>Save</Button>
                                 </>
@@ -61,13 +63,12 @@ const TaskDetailsModal = ({
                                     >
                                         Due date:
                                     </label>
-                                    <input
+                                    <Input
                                         type="date"
                                         id="dueDate"
                                         name="dueDate"
                                         value={editedTask.dueDate}
                                         onChange={onChange}
-                                        className="border border-gray-300 p-2 rounded-md flex-grow"
                                     />
                                 </div>
                                 <div className="flex items-center gap-2.5 mb-2.5">
@@ -77,17 +78,20 @@ const TaskDetailsModal = ({
                                     >
                                         Priority:
                                     </label>
-                                    <select
+                                    <Select
                                         id="priority"
                                         name="priority"
                                         value={editedTask.priority}
                                         onChange={onChange}
-                                        className="border border-gray-300 p-2 rounded-md flex-grow"
-                                    >
-                                        <option value="low">Low</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="high">High</option>
-                                    </select>
+                                        options={[
+                                            { value: "low", label: "Low" },
+                                            {
+                                                value: "medium",
+                                                label: "Medium",
+                                            },
+                                            { value: "high", label: "High" },
+                                        ]}
+                                    />
                                 </div>
                                 <div className="flex items-start gap-2.5 mb-2.5">
                                     <label
@@ -96,12 +100,12 @@ const TaskDetailsModal = ({
                                     >
                                         Description:
                                     </label>
-                                    <textarea
+                                    <Textarea
                                         id="taskDescription"
                                         name="taskDescription"
                                         value={editedTask.taskDescription}
                                         onChange={onChange}
-                                        className="border border-gray-300 p-2 rounded-md flex-grow h-24"
+                                        className="flex-grow h-24"
                                     />
                                 </div>
                             </>
@@ -133,28 +137,31 @@ const TaskDetailsModal = ({
 
                     <div className="history-section flex-auto w-full lg:w-2/5 bg-gray-100 p-3.5 overflow-y-auto">
                         <h3>History</h3>
-                        <ul className="list-none p-0">
-                            {historyLogs.map((log) => (
-                                <li
-                                    key={log.id}
-                                    className="mb-2.5 text-gray-600"
-                                >
-                                    <p>{log.description}</p>
-                                    <small>
-                                        {new Date(log.timestamp).toLocaleString(
-                                            "en-US",
-                                            {
+                        {historyLogs.length > 0 ? (
+                            <ul className="list-none p-0">
+                                {historyLogs.map((log) => (
+                                    <li
+                                        key={log.id}
+                                        className="mb-2.5 text-gray-600"
+                                    >
+                                        <p>{log.description}</p>
+                                        <small>
+                                            {new Date(
+                                                log.timestamp
+                                            ).toLocaleString("en-US", {
                                                 month: "short",
                                                 day: "numeric",
                                                 hour: "2-digit",
                                                 minute: "2-digit",
                                                 hour12: true,
-                                            }
-                                        )}
-                                    </small>
-                                </li>
-                            ))}
-                        </ul>
+                                            })}
+                                        </small>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="text-gray-600">Empty for now</p>
+                        )}
                     </div>
                 </div>
                 <button

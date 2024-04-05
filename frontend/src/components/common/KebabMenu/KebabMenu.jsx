@@ -25,7 +25,10 @@ const KebabMenu = ({ children }) => {
     }, []);
 
     return (
-        <div className="kebab-menu-container relative self-start" ref={menuRef}>
+        <div
+            className="kebab-menu-container relative self-start w-max"
+            ref={menuRef}
+        >
             <button
                 className="border-none outline-none cursor-pointer bg-inherit"
                 onClick={togglePopup}

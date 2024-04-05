@@ -1,23 +1,36 @@
+.details-modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 95vh;
+    overflow: hidden;
+}
+
+.task-details {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+}
+
+.task-info,
+.history-section {
+    overflow-y: auto;
+}
+
+
 @media (max-width: 1368px) {
     .details-modal-content {
         width: 80%;
         height: 80%;
-        overflow-y: auto;
     }
 
     .task-details {
         flex-direction: column;
     }
 
-    .task-info {
-        flex: 1;
-        overflow-y: auto;
-    }
-
+    .task-info,
     .history-section {
-        flex: 1;
+        flex: none;
         width: auto;
         max-height: none;
-        overflow-y: auto;
     }
 }

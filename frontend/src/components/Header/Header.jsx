@@ -5,7 +5,8 @@ import plusIcon from "../../assets/icons/plusIcon.svg";
 import historyIcon from "../../assets/icons/historyIcon.svg";
 import deleteIcon from "../../assets/icons/deleteIcon.svg";
 import editIcon from "../../assets/icons/editIcon.svg";
-import { ReactComponent as DownArrowIcon } from "../../assets/icons/downArrow.svg";
+import Input from "../common/Inputs/Input";
+import Select from "../common/Inputs/Select";
 
 function Header({
     onAddNewBoard,
@@ -22,13 +23,13 @@ function Header({
 }) {
     return (
         <div className="flex justify-between m-5 mb-0">
-            <div className="board-buttons-container">
+            <div className="board-buttons-container mr-5">
                 <Button icon={plusIcon} onClick={onAddNewBoard}>
                     New Board
                 </Button>
                 {isEditingBoard ? (
                     <>
-                        <input
+                        <Input
                             type="text"
                             value={editedBoardName}
                             onChange={(e) =>
@@ -40,22 +41,14 @@ function Header({
                     </>
                 ) : (
                     <>
-                        <div className="relative">
-                            <select
-                                value={currentBoardId || ""}
-                                onChange={(e) => onSelectBoard(e.target.value)}
-                                className="appearance-none p-2 pr-8 bg-no-repeat bg-right-2 bg-center border border-gray-300 rounded-md shadow-sm text-gray-666 cursor-pointer w-full bg-f9f9f9"
-                            >
-                                {boards.map((board) => (
-                                    <option key={board.id} value={board.id}>
-                                        {board.name}
-                                    </option>
-                                ))}
-                            </select>
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <DownArrowIcon className="w-3 h-3 mr-2" />
-                            </div>
-                        </div>
+                        <Select
+                            value={currentBoardId || ""}
+                            onChange={(e) => onSelectBoard(e.target.value)}
+                            options={boards.map((board) => ({
+                                value: board.id,
+                                label: board.name,
+                            }))}
+                        />
                         <Button
                             icon={editIcon}
                             onClick={() => handleEditBoardName()}
