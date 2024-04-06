@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import plusIconLight from "../../../assets/icons/plusIconLight.svg";
 import Button from "../Button/Button";
-import { ReactComponent as DownArrowIcon } from "../../../assets/icons/downArrow.svg";
 import Input from "../Inputs/Input";
 import Textarea from "../Inputs/Textarea";
 import Select from "../Inputs/Select";
@@ -36,6 +35,7 @@ const TaskForm = ({ onSave }) => {
                 onChange={(e) => setTaskDescription(e.target.value)}
             />
             <Input
+                aria-label="Due Date"
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}

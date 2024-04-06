@@ -17,9 +17,9 @@ const HistorySidebar = forwardRef(
                         Clear
                     </Button>
                 </div>
-                <ul className="list-none p-5">
-                    {logs &&
-                        logs.map((log) => (
+                {logs && logs.length > 0 ? (
+                    <ul className="list-none p-5">
+                        {logs.map((log) => (
                             <li key={log.id} className="mt-3.5 first:mt-0">
                                 <p>{log.description}</p>
                                 <small>
@@ -36,7 +36,12 @@ const HistorySidebar = forwardRef(
                                 </small>
                             </li>
                         ))}
-                </ul>
+                    </ul>
+                ) : (
+                    <div className="text-center p-5 text-gray-600">
+                        <p>Empty for now</p>
+                    </div>
+                )}
             </aside>
         );
     }

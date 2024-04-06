@@ -1,4 +1,3 @@
-// Inputs/Inputs.stories.jsx
 import React from "react";
 import Input from "./Input.jsx";
 import Textarea from "./Textarea.jsx";

@@ -1,4 +1,3 @@
-// KebabMenu.stories.jsx
 import React from "react";
 import Button from "../Button/Button.jsx";
 import KebabMenu from "./KebabMenu";
