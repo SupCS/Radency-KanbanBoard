@@ -28,6 +28,18 @@ cd ../frontend
 npm install
 npm start
 
+### Run tests
+
+For frontend:
+
+cd frontend
+npm test
+
+For backend:
+
+cd backend
+npm run test:e2e
+
 ### Need to have
 
 Node.js
